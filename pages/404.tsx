@@ -1,4 +1,6 @@
 import { Flex, Image } from "@chakra-ui/react";
+import Link from "next/link";
+import StyledLink from "../src/components/StyledLink";
 
 export default function Custom404() {
   return (
@@ -15,6 +17,9 @@ export default function Custom404() {
       padding="20px"
     >
       <Image src="/images/404.jpeg" />
+      <Link href="/" passHref>
+        <StyledLink>Return To Home</StyledLink>
+      </Link>
     </Flex>
   );
 }
