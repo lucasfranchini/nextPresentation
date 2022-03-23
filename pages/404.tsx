@@ -17,9 +17,7 @@ export default function Custom404() {
       padding="20px"
     >
       <Image src="/images/404.jpeg" />
-      <Link href="/" passHref>
-        <StyledLink>Return To Home</StyledLink>
-      </Link>
+      <StyledLink href="/">Return To Home</StyledLink>
     </Flex>
   );
 }

@@ -1,7 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import StyledLink from "../src/components/StyledLink";
 import Title from "../src/components/Title";
 
@@ -24,9 +23,7 @@ export default function Home() {
       >
         <Title>Isso é uma pagina estática</Title>
         <Image src="/images/pusheencode.gif" width="400px" height="300px" />
-        <Link href="/tools" passHref>
-          <StyledLink>teste</StyledLink>
-        </Link>
+        <StyledLink href="/tools">teste</StyledLink>
       </Flex>
     </>
   );
