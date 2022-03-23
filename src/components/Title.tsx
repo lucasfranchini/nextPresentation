@@ -7,7 +7,7 @@ interface Props {
 
 export default function Title({ children }: Props) {
   return (
-    <Text fontSize="6xl" color="white">
+    <Text fontSize="6xl" color="white" fontFamily="Montserrat">
       {children}
     </Text>
   );
