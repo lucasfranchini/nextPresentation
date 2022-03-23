@@ -5,7 +5,7 @@ import Link from "next/link";
 import StyledLink from "../src/components/StyledLink";
 import Title from "../src/components/Title";
 
-export default function home() {
+export default function Home() {
   return (
     <>
       <Head>

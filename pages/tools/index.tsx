@@ -1,3 +1,3 @@
-export default function tools() {
+export default function Tools() {
   return <div>teste</div>;
 }
