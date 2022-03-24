@@ -1,3 +1,6 @@
+import { Flex } from "@chakra-ui/react";
+import Head from "next/head";
+import ToolListItem from "../../src/components/ToolListItem";
 import Tool from "../../src/interfaces/Tool";
 
 // export async function getStaticProps() {
@@ -12,5 +15,26 @@ export async function getServerSideProps() {
 }
 
 export default function Tools({ tools }: { tools: Tool[] }) {
-  return <div>teste</div>;
+  return (
+    <>
+      <Head>
+        <title>Tools List</title>
+      </Head>
+      <Flex
+        w="100%"
+        height="100vh"
+        bgImage="url('/images/Bg.svg')"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        bgPosition="center"
+        alignItems="center"
+        flexDirection="column"
+        padding="20px"
+      >
+        {tools.map((tool) => (
+          <ToolListItem />
+        ))}
+      </Flex>
+    </>
+  );
 }
