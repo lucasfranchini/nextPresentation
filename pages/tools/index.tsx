@@ -32,7 +32,7 @@ export default function Tools({ tools }: { tools: Tool[] }) {
         padding="20px"
       >
         {tools.map((tool) => (
-          <ToolListItem />
+          <ToolListItem key={tool.id} tool={tool} />
         ))}
       </Flex>
     </>
