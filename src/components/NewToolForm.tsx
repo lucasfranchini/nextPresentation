@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Input } from "@chakra-ui/react";
+import NewToolTagManager from "./NewToolTagManager";
+import Tool from "../interfaces/Tool";
 
 export default function NewToolForm() {
-  const [newTool, setNewTool] = useState({
-    name: "",
+  const [newTool, setNewTool] = useState<Tool>({
+    title: "",
     link: "",
     description: "",
     tags: [],
@@ -12,9 +14,9 @@ export default function NewToolForm() {
   const inputs = [
     {
       placeholder: "Nome da ferramenta",
-      value: newTool.name,
+      value: newTool.title,
       onChange: (e: React.FormEvent<HTMLInputElement>) =>
-        setNewTool({ ...newTool, name: e.currentTarget.value }),
+        setNewTool({ ...newTool, title: e.currentTarget.value }),
       pattern: /[a-zA-Z]{3,}/,
     },
     {
@@ -51,6 +53,7 @@ export default function NewToolForm() {
           _placeholder={{ color: "#ABABAB" }}
         />
       ))}
+      <NewToolTagManager setNewTool={setNewTool} newTool={newTool} />
     </>
   );
 }
