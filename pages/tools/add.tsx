@@ -1,4 +1,5 @@
 import { Flex } from "@chakra-ui/react";
+import Background from "../../src/components/Background";
 import Title from "../../src/components/Title";
 import Head from "next/head";
 
@@ -8,18 +9,7 @@ export default function Tools() {
       <Head>
         <title>Add a Tool</title>
       </Head>
-      <Flex
-        w="100%"
-        height="100vh"
-        bgImage="url('/images/Bg.svg')"
-        bgRepeat="no-repeat"
-        bgSize="cover"
-        bgPosition="center"
-        alignItems="center"
-        justifyContent="center"
-        flexDirection="column"
-        padding="20px"
-      >
+      <Background>
         <Flex
           w="70%"
           height="70vh"
@@ -32,7 +22,7 @@ export default function Tools() {
             Adicione uma ferramenta
           </Title>
         </Flex>
-      </Flex>
+      </Background>
     </>
   );
 }
