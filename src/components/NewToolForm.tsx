@@ -53,6 +53,7 @@ export default function NewToolForm() {
             input.value.length > 0 ? !input.pattern.test(input.value) : false
           }
           _placeholder={{ color: "#ABABAB" }}
+          key={input.placeholder}
         />
       ))}
       <NewToolTagManager
