@@ -19,19 +19,31 @@ export default function NewToolTagManager({
   const addTag: Function = (tag: string) =>
     setNewTool({ ...newTool, tags: [...newTool.tags, tag] });
 
+  const removeTag: Function = (index: number) => {
+    newTool.tags.splice(index, 1);
+    setNewTool({ ...newTool, tags: [...newTool.tags] });
+  };
+
   const addOnEnter = (input: string) => {
-    if (input === "Enter" && newTag) {
-      if (newTool.tags.length > 10) {
-        toast({
-          description: "É possível adicionar no máximo 10 tags",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-      } else {
-        addTag(newTag);
-        setNewTag("");
-      }
+    if (input !== "Enter" || !newTag) return;
+
+    if (newTool.tags.length === 10) {
+      toast({
+        description: "É possível adicionar no máximo 10 tags",
+        status: "error",
+        duration: 500,
+        isClosable: false,
+      });
+    } else if (newTool.tags.indexOf(newTag) === -1) {
+      addTag(newTag);
+      setNewTag("");
+    } else {
+      toast({
+        description: "Você já adicionou essa tag",
+        status: "error",
+        duration: 500,
+        isClosable: false,
+      });
     }
   };
 
@@ -47,7 +59,9 @@ export default function NewToolTagManager({
     >
       <Flex flexWrap="wrap">
         {newTool.tags.map((tag) => (
-          <Tag>{tag}</Tag>
+          <Tag removeTag={removeTag} tags={newTool.tags} key={tag}>
+            {tag}
+          </Tag>
         ))}
       </Flex>
       <Input
