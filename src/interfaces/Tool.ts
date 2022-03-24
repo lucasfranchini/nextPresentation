@@ -3,5 +3,5 @@ export default interface Tool {
   link: string;
   description: string;
   tags: string[];
-  id: string;
+  id?: string;
 }
