@@ -56,6 +56,7 @@ export default function NewToolTagManager({
       borderRadius="15px 15px 0px 0px"
       position="relative"
       p="0"
+      mb="70px"
     >
       <Flex flexWrap="wrap">
         {newTool.tags.map((tag) => (
