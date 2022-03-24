@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Input, useToast } from "@chakra-ui/react";
+import { Button, Input, useToast } from "@chakra-ui/react";
 import NewToolTagManager from "./NewToolTagManager";
 import Tool from "../interfaces/Tool";
+import { createTool } from "../services/api";
 
 export default function NewToolForm() {
   const [newTool, setNewTool] = useState<Tool>({
@@ -38,6 +39,39 @@ export default function NewToolForm() {
     },
   ];
 
+  const checkInputs = () => {
+    let allowed = true;
+
+    inputs.forEach((input) => {
+      if (
+        !input.value ||
+        !newTool.tags.length ||
+        !input.pattern.test(input.value)
+      )
+        allowed = false;
+    });
+
+    return allowed;
+  };
+
+  const handleToolCreation = () => {
+    createTool(newTool).then(() => {
+      setNewTool({
+        title: "",
+        link: "",
+        description: "",
+        tags: [],
+      });
+
+      toast({
+        description: "Ferramenta criada!",
+        status: "success",
+        duration: 1000,
+        isClosable: false,
+      });
+    });
+  };
+
   return (
     <>
       {inputs.map((input) => (
@@ -61,6 +95,14 @@ export default function NewToolForm() {
         setNewTool={setNewTool}
         newTool={newTool}
       />
+      <Button
+        onClick={() => handleToolCreation()}
+        w="100%"
+        disabled={!checkInputs()}
+        cursor={checkInputs() ? "cursor" : "not-allowed"}
+      >
+        Criar
+      </Button>
     </>
   );
 }
