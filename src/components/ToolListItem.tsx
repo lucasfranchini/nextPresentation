@@ -15,7 +15,7 @@ export default function ToolListItem({ tool }: { tool: Tool }) {
         cursor="pointer"
         flexDir="column"
       >
-        <Text textAlign="center" fontWeight="bold" fontSize="18px">
+        <Text textAlign="center" fontWeight="bold" fontSize="18px" mb="15px">
           {tool.title}
         </Text>
         <Text textAlign="center" fontSize="16px">
