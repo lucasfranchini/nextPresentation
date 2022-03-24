@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import Background from "../../src/components/Background";
 import Title from "../../src/components/Title";
 import Head from "next/head";
+import NewToolForm from "../../src/components/NewToolForm";
 
 export default function Tools() {
   return (
@@ -16,11 +17,14 @@ export default function Tools() {
           bg="white"
           borderRadius="15px"
           justifyContent="center"
-          pt="15px"
+          alignItems="center"
+          p="15px 70px"
+          direction="column"
         >
           <Title fontWeight="700" color="black">
             Adicione uma ferramenta
           </Title>
+          <NewToolForm />
         </Flex>
       </Background>
     </>
