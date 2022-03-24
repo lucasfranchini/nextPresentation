@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input } from "@chakra-ui/react";
+import { Input, useToast } from "@chakra-ui/react";
 import NewToolTagManager from "./NewToolTagManager";
 import Tool from "../interfaces/Tool";
 
@@ -10,6 +10,8 @@ export default function NewToolForm() {
     description: "",
     tags: [],
   });
+
+  const toast = useToast();
 
   const inputs = [
     {
@@ -53,7 +55,11 @@ export default function NewToolForm() {
           _placeholder={{ color: "#ABABAB" }}
         />
       ))}
-      <NewToolTagManager setNewTool={setNewTool} newTool={newTool} />
+      <NewToolTagManager
+        toast={toast}
+        setNewTool={setNewTool}
+        newTool={newTool}
+      />
     </>
   );
 }
