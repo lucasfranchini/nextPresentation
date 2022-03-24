@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import Head from "next/head";
+import Title from "../../src/components/Title";
 import ToolListItem from "../../src/components/ToolListItem";
 import Tool from "../../src/interfaces/Tool";
 
@@ -31,6 +32,7 @@ export default function Tools({ tools }: { tools: Tool[] }) {
         flexDirection="column"
         padding="20px"
       >
+        <Title>Tools List</Title>
         {tools.map((tool) => (
           <ToolListItem key={tool.id} tool={tool} />
         ))}
