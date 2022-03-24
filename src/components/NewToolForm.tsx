@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Input, useToast } from "@chakra-ui/react";
 import NewToolTagManager from "./NewToolTagManager";
 import Tool from "../interfaces/Tool";
-import { createTool } from "../services/api";
+import { createTool } from "../services/toolsRoute";
 
 export default function NewToolForm() {
   const [newTool, setNewTool] = useState<Tool>({
@@ -55,21 +55,30 @@ export default function NewToolForm() {
   };
 
   const handleToolCreation = () => {
-    createTool(newTool).then(() => {
-      setNewTool({
-        title: "",
-        link: "",
-        description: "",
-        tags: [],
-      });
+    createTool(newTool)
+      .then(() => {
+        setNewTool({
+          title: "",
+          link: "",
+          description: "",
+          tags: [],
+        });
 
-      toast({
-        description: "Ferramenta criada!",
-        status: "success",
-        duration: 1000,
-        isClosable: false,
-      });
-    });
+        toast({
+          description: "Ferramenta criada!",
+          status: "success",
+          duration: 1000,
+          isClosable: false,
+        });
+      })
+      .catch((error) =>
+        toast({
+          description: error,
+          status: "error",
+          duration: 1000,
+          isClosable: false,
+        })
+      );
   };
 
   return (
