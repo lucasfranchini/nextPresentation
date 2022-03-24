@@ -18,7 +18,7 @@ export default function Tools() {
           borderRadius="15px"
           justifyContent="center"
           alignItems="center"
-          p="15px 70px"
+          p="0px 70px"
           direction="column"
         >
           <Title fontWeight="700" color="black">
