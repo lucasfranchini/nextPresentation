@@ -1,47 +1,76 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { Flex, Text, Link, useToast } from "@chakra-ui/react";
+import { Flex, Text, Link, useToast, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { getTool } from "../../../src/services/toolsRoute";
+import { deleteTool, getTool } from "../../../src/services/toolsRoute";
 import Tool from "../../../src/interfaces/Tool";
 import Background from "../../../src/components/Background";
 import Title from "../../../src/components/Title";
 import Tag from "../../../src/components/Tag";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { AxiosResponse } from "axios";
 
-export default function ToolById() {
-  const [tool, setTool] = useState<Tool>({
-    title: "",
-    link: "",
-    description: "",
-    tags: [],
+export async function getServerSideProps(context: any) {
+  const { toolId } = context.query;
+  let toolData = {
+    data: {
+      title: "",
+      link: "",
+      description: "",
+      tags: [],
+    },
+  };
+  let successful = false;
+
+  await getTool(toolId).then((response: AxiosResponse) => {
+    toolData = response.data;
+    console.log(toolData);
+    successful = true;
   });
-  const [toolFound, setToolFound] = useState(false);
 
-  const router = useRouter();
+  return { props: { toolData, successful } };
+}
+
+export default function ToolById({
+  toolData,
+  successful,
+}: {
+  toolData: Tool;
+  successful: boolean;
+}) {
+  const toolId = toolData.id;
   const toast = useToast();
-  const { toolId } = router.query;
 
-  useEffect(() => {
-    if (toolId)
-      getTool(toolId)
-        .then((response) => {
-          setTool(response.data);
-          setToolFound(true);
-        })
-        .catch(() =>
-          toast({
-            description: "Ferramenta não encontrada",
-            status: "error",
-            duration: 1000,
-            isClosable: false,
-          })
+  const handleDeletion = () => {
+    deleteTool(toolId)
+      .then(() => {
+        toast({
+          description: "Ferramenta deletada",
+          status: "success",
+          duration: 1000,
+          isClosable: false,
+        });
+
+        setTimeout(
+          () => window.location.replace("http://localhost:3001/tools"),
+          1000
         );
-  }, [toolId]);
+      })
+      .catch(() =>
+        toast({
+          description: "Ocorreu um erro, a ferramenta não foi deletada",
+          status: "error",
+          duration: 1000,
+          isClosable: false,
+        })
+      );
+  };
 
   return (
     <>
       <Head>
-        <title>{tool.title}</title>
+        <title>{toolData.title || "Ferramenta não encontrada"}</title>
       </Head>
       <Background>
         <Flex
@@ -49,13 +78,14 @@ export default function ToolById() {
           height="70vh"
           bg="white"
           borderRadius="15px"
-          justifyContent={toolFound ? "space-around" : "center"}
+          justifyContent={successful ? "space-around" : "center"}
           alignItems="center"
           p="0px 70px"
+          position="relative"
           direction="column"
         >
           <Title fontWeight="700" color="black">
-            {tool.title || "Ferramenta não encontrada"}
+            {toolData.title || "Ferramenta não encontrada"}
           </Title>
           <Text
             fontSize="3xl"
@@ -65,7 +95,7 @@ export default function ToolById() {
             textAlign="center"
             fontWeight="400"
           >
-            {tool.description}
+            {toolData.description}
           </Text>
           <Flex
             w="90%"
@@ -76,8 +106,8 @@ export default function ToolById() {
             alignItems="center"
             p="0px 70px"
           >
-            {tool.tags.map((tag) => (
-              <Tag>{tag}</Tag>
+            {toolData.tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </Flex>
           <Link
@@ -88,13 +118,21 @@ export default function ToolById() {
             fontWeight="700"
             borderRadius="5px"
             textAlign="center"
-            display={toolFound ? "" : "none"}
+            display={successful ? "" : "none"}
             isExternal
-            href={tool.link}
+            href={toolData.link}
             _hover={{ textDecoration: "none" }}
           >
             Acessar em outra aba
           </Link>
+          <Button
+            onClick={() => handleDeletion()}
+            position="absolute"
+            top="10px"
+            right="10px"
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </Button>
         </Flex>
       </Background>
     </>
