@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useToast } from "@chakra-ui/react";
 import Head from "next/head";
 import Title from "../../src/components/Title";
 import ToolListItem from "../../src/components/ToolListItem";
@@ -24,13 +24,22 @@ export async function getServerSideProps() {
 type onSearchType = (searchText: string, field: fieldType) => void;
 export default function Tools({ initialTools }: { initialTools: Tool[] }) {
   const [tools, setTools] = useState<Tool[]>(initialTools);
+  const toast = useToast();
 
   function searchBarSubmit(searchtText: string, field: fieldType) {
     searchTools(searchtText, field)
       .then((res: any) => {
         setTools(res.data);
       })
-      .catch(() => {});
+      .catch(() => {
+        toast({
+          description:
+            "não foi possivel encontrar a ferramenta favor, atualize a pagina",
+          status: "error",
+          duration: 1000,
+          isClosable: false,
+        });
+      });
   }
 
   return (
