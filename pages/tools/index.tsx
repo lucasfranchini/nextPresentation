@@ -6,6 +6,9 @@ import Tool from "../../src/interfaces/Tool";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../src/components/searchBar";
+import { useState } from "react";
+import { searchTools } from "../../src/services/toolsRoute";
+import fieldType from "../../src/types/fieldType";
 
 // export async function getStaticProps() {
 //      Em modo DEV, sempre roda! A cada acesso
@@ -14,11 +17,22 @@ export async function getServerSideProps() {
   //     Em modo DEV, sempre roda! A cada acesso
   //     Rodando a cada acesso que você recebe
   const res = await fetch("http://localhost:3000/tools");
-  const tools = await res.json();
-  return { props: { tools } };
+  const initialTools = await res.json();
+  return { props: { initialTools } };
 }
 
-export default function Tools({ tools }: { tools: Tool[] }) {
+type onSearchType = (searchText: string, field: fieldType) => void;
+export default function Tools({ initialTools }: { initialTools: Tool[] }) {
+  const [tools, setTools] = useState<Tool[]>(initialTools);
+
+  function searchBarSubmit(searchtText: string, field: fieldType) {
+    searchTools(searchtText, field)
+      .then((res: any) => {
+        setTools(res.data);
+      })
+      .catch(() => {});
+  }
+
   return (
     <>
       <Head>
@@ -38,7 +52,7 @@ export default function Tools({ tools }: { tools: Tool[] }) {
         <Title>
           <FontAwesomeIcon icon={faScrewdriverWrench} /> Tools List
         </Title>
-        <SearchBar />
+        <SearchBar onSearch={searchBarSubmit} />
         {tools.map((tool) => (
           <ToolListItem key={tool.id} tool={tool} />
         ))}
