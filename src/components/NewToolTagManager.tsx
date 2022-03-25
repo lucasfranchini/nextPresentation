@@ -2,6 +2,7 @@ import { KeyboardEvent, useState } from "react";
 import { Flex, Input } from "@chakra-ui/react";
 import Tool from "../interfaces/Tool";
 import AddedTag from "./AddedTag";
+import { runOnEnter } from "../services/addOnEnter";
 
 type Props = {
   setNewTool: React.Dispatch<React.SetStateAction<any>>;
@@ -24,9 +25,7 @@ export default function NewToolTagManager({
     setNewTool({ ...newTool, tags: [...newTool.tags] });
   };
 
-  const addOnEnter = (input: string) => {
-    if (input !== "Enter" || !newTag) return;
-
+  const addFunction = () => {
     if (newTool.tags.length === 10) {
       toast({
         description: "É possível adicionar no máximo 10 tags",
@@ -70,7 +69,9 @@ export default function NewToolTagManager({
         onChange={(e: React.FormEvent<HTMLInputElement>) =>
           setNewTag(e.currentTarget.value)
         }
-        onKeyUp={(e: KeyboardEvent) => addOnEnter(e.nativeEvent.code)}
+        onKeyUp={(e: KeyboardEvent) =>
+          runOnEnter(e.nativeEvent.code, addFunction, newTag)
+        }
         position="absolute"
         bottom="-48px"
         left="-2px"
