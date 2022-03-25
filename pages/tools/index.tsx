@@ -5,6 +5,7 @@ import ToolListItem from "../../src/components/ToolListItem";
 import Tool from "../../src/interfaces/Tool";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "../../src/components/searchBar";
 
 // export async function getStaticProps() {
 //      Em modo DEV, sempre roda! A cada acesso
@@ -37,6 +38,7 @@ export default function Tools({ tools }: { tools: Tool[] }) {
         <Title>
           <FontAwesomeIcon icon={faScrewdriverWrench} /> Tools List
         </Title>
+        <SearchBar />
         {tools.map((tool) => (
           <ToolListItem key={tool.id} tool={tool} />
         ))}
