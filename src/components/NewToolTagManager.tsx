@@ -1,7 +1,7 @@
 import { KeyboardEvent, useState } from "react";
 import { Flex, Input } from "@chakra-ui/react";
 import Tool from "../interfaces/Tool";
-import Tag from "../components/Tag";
+import AddedTag from "./AddedTag";
 
 type Props = {
   setNewTool: React.Dispatch<React.SetStateAction<any>>;
@@ -60,9 +60,9 @@ export default function NewToolTagManager({
     >
       <Flex flexWrap="wrap">
         {newTool.tags.map((tag) => (
-          <Tag removeTag={removeTag} tags={newTool.tags} key={tag}>
+          <AddedTag removeTag={removeTag} tags={newTool.tags} key={tag}>
             {tag}
-          </Tag>
+          </AddedTag>
         ))}
       </Flex>
       <Input
