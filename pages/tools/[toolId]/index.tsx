@@ -14,30 +14,30 @@ import { AxiosResponse } from "axios";
 export async function getServerSideProps(context: any) {
   const { toolId } = context.query;
   let toolData = {
-    data: {
-      title: "",
-      link: "",
-      description: "",
-      tags: [],
-    },
+    title: "",
+    link: "",
+    description: "",
+    tags: [],
   };
-  let successful = false;
 
-  await getTool(toolId).then((response: AxiosResponse) => {
-    toolData = response.data;
-    successful = true;
-  });
+  await getTool(toolId)
+    .then((response: AxiosResponse) => {
+      toolData = response.data;
+    })
+    .catch((e) => console.error(e));
 
-  return { props: { toolData, successful } };
+  if (!toolData.title)
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+
+  return { props: { toolData } };
 }
 
-export default function ToolById({
-  toolData,
-  successful,
-}: {
-  toolData: Tool;
-  successful: boolean;
-}) {
+export default function ToolById({ toolData }: { toolData: Tool }) {
   const toolId = toolData.id;
   const toast = useToast();
 
@@ -77,7 +77,7 @@ export default function ToolById({
           height="70vh"
           bg="white"
           borderRadius="15px"
-          justifyContent={successful ? "space-around" : "center"}
+          justifyContent="space-around"
           alignItems="center"
           p="0px 70px"
           position="relative"
@@ -117,7 +117,6 @@ export default function ToolById({
             fontWeight="700"
             borderRadius="5px"
             textAlign="center"
-            display={successful ? "" : "none"}
             isExternal
             href={toolData.link}
             _hover={{ textDecoration: "none" }}
