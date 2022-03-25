@@ -25,7 +25,6 @@ export async function getServerSideProps(context: any) {
 
   await getTool(toolId).then((response: AxiosResponse) => {
     toolData = response.data;
-    console.log(toolData);
     successful = true;
   });
 
