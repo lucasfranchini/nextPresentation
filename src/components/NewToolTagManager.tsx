@@ -58,7 +58,7 @@ export default function NewToolTagManager({
       mb="70px"
     >
       <Flex flexWrap="wrap">
-        {newTool.tags.map((tag) => (
+        {newTool?.tags?.map((tag) => (
           <AddedTag removeTag={removeTag} tags={newTool.tags} key={tag}>
             {tag}
           </AddedTag>

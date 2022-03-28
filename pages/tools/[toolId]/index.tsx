@@ -103,7 +103,7 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
             alignItems="center"
             p="0px 70px"
           >
-            {toolData.tags.map((tag) => (
+            {toolData?.tags?.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}
           </Flex>

@@ -45,7 +45,7 @@ export default function Tools({ allTools }: { allTools: Tool[] }) {
           <FontAwesomeIcon icon={faScrewdriverWrench} /> Tools List
         </Title>
         <SearchBar setTools={setTools} />
-        {tools.map((tool) => (
+        {tools?.map((tool) => (
           <ToolListItem key={tool.id} tool={tool} />
         ))}
       </Flex>
