@@ -13,7 +13,7 @@ export default function SearchBarInput({
 }) {
   const [searchText, setSearchText] = useState("");
   return (
-    <FormControl w="50%">
+    <FormControl>
       <Flex w="100%" bgColor="white" borderRadius="5px" padding="5px" mb="15px">
         <Input
           value={searchText}

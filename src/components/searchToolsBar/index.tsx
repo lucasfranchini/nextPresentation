@@ -27,7 +27,7 @@ export default function SearchBar({ setTools }: { setTools: any }) {
   }
 
   return (
-    <Box>
+    <Box w="50%" mb="20px">
       <SearchBarInput onSearch={searchBarSubmit} />
       <SearchBarOptions
         value={searchToolsOptions}

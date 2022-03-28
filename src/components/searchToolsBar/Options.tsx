@@ -9,10 +9,16 @@ export default function SearchBarOptions({
 }) {
   return (
     <RadioGroup onChange={setValue} value={value}>
-      <Stack direction="row">
-        <Radio value="all">all</Radio>
-        <Radio value="title">title</Radio>
-        <Radio value="tags">tags</Radio>
+      <Stack direction="row" color="white">
+        <Radio colorScheme="gray" value="all">
+          all
+        </Radio>
+        <Radio colorScheme="gray" value="title">
+          title
+        </Radio>
+        <Radio colorScheme="gray" value="tags">
+          tags
+        </Radio>
       </Stack>
     </RadioGroup>
   );
