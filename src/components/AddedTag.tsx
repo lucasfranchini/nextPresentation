@@ -11,14 +11,14 @@ export default function AddedTag({ children, removeTag, tags }: Props) {
     <Flex
       height="30px"
       border="0px"
-      borderRadius="10px"
+      borderRadius="brand.sm"
       position="relative"
       p="5px 40px 25px 10px"
-      bg="#5232C9"
+      bg="product.pjPure"
       m="5px"
-      color="white"
-      fontWeight="600"
-      fontFamily="Montserrat"
+      color="brand.secondaryLight"
+      fontWeight="bold"
+      fontFamily="family"
       cursor="default"
     >
       {children}

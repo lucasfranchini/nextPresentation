@@ -10,7 +10,7 @@ interface Props {
 export default function Title({ children, color, fontWeight }: Props) {
   return (
     <Text
-      fontSize="6xl"
+      fontSize="brand.xxxl"
       color={color || "white"}
       fontFamily="Montserrat"
       mb="50px"
