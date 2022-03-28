@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ToolFieldType from "../../types/toolFieldType";
 import { useState } from "react";
+import { runOnEnter } from "../../services/addOnEnter";
 
-type onSearchType = (searchText: string, field: ToolFieldType) => void;
+type onSearchType = (searchText: string) => void;
 
 export default function SearchBarInput({
   onSearch,
@@ -21,11 +22,14 @@ export default function SearchBarInput({
           type="text"
           placeholder="Search..."
           border="none"
+          onKeyUp={(e) => {
+            runOnEnter(e.nativeEvent.code, () => onSearch(searchText));
+          }}
         />
         <IconButton
           type="submit"
           onClick={() => {
-            onSearch(searchText, "all");
+            onSearch(searchText);
           }}
           aria-label="Search database"
           icon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
