@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { Flex, Text, Link, useToast, Button } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
 import { deleteTool, getTool } from "../../../src/services/toolsRoute";
 import Tool from "../../../src/interfaces/Tool";
 import Background from "../../../src/components/Background";
@@ -43,6 +42,7 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
   const toast = useToast();
 
   const handleDeletion = () => {
+    const router = useRouter();
     deleteTool(toolId)
       .then(() => {
         toast({
@@ -52,10 +52,7 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
           isClosable: false,
         });
 
-        setTimeout(
-          () => window.location.replace("http://localhost:3001/tools"),
-          1000
-        );
+        setTimeout(() => router.push("http://localhost:3001/tools"), 1000);
       })
       .catch(() =>
         toast({
@@ -90,10 +87,10 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
           <Text
             fontSize="3xl"
             color="black"
-            fontFamily="family"
+            fontFamily="Montserrat"
             mb="50px"
             textAlign="center"
-            fontWeight="regular"
+            fontWeight="400"
           >
             {toolData.description}
           </Text>
@@ -112,7 +109,7 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
           </Flex>
           <Link
             w="70%"
-            bg="product.pjPure"
+            bg="#5232C9"
             color="white"
             fontSize="xl"
             fontWeight="700"
