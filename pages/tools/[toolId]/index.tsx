@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { Flex, Text, Link, useToast, Button } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
 import { deleteTool, getTool } from "../../../src/services/toolsRoute";
 import Tool from "../../../src/interfaces/Tool";
 import Background from "../../../src/components/Background";
