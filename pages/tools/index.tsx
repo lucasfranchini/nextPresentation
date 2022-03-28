@@ -5,6 +5,8 @@ import ToolListItem from "../../src/components/ToolListItem";
 import Tool from "../../src/interfaces/Tool";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "../../src/components/searchToolsBar";
+import { useState } from "react";
 import HomeButton from "../../src/components/HomeButton";
 
 // export async function getStaticProps() {
@@ -14,11 +16,13 @@ export async function getServerSideProps() {
   //     Em modo DEV, sempre roda! A cada acesso
   //     Rodando a cada acesso que você recebe
   const res = await fetch("http://localhost:3000/tools");
-  const tools = await res.json();
-  return { props: { tools } };
+  const allTools = await res.json();
+  return { props: { allTools } };
 }
 
-export default function Tools({ tools }: { tools: Tool[] }) {
+export default function Tools({ allTools }: { allTools: Tool[] }) {
+  const [tools, setTools] = useState<Tool[]>(allTools);
+
   return (
     <>
       <Head>
@@ -40,6 +44,7 @@ export default function Tools({ tools }: { tools: Tool[] }) {
         <Title>
           <FontAwesomeIcon icon={faScrewdriverWrench} /> Tools List
         </Title>
+        <SearchBar setTools={setTools} />
         {tools.map((tool) => (
           <ToolListItem key={tool.id} tool={tool} />
         ))}
