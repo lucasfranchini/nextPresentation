@@ -13,11 +13,11 @@ export default function Tag({ children }: Props) {
       borderRadius="10px"
       position="relative"
       p="10px 10px 20px 10px"
-      bg="#5232C9"
+      bg="product.pjPure"
       m="5px"
       color="white"
-      fontWeight="600"
-      fontFamily="Montserrat"
+      fontWeight="bold"
+      fontFamily="family"
       cursor="default"
     >
       <Text>{children}</Text>

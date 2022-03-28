@@ -90,7 +90,7 @@ export default function NewToolForm() {
           placeholder={input.placeholder}
           size="lg"
           variant="filled"
-          focusBorderColor="#5232C9"
+          focusBorderColor="product.pjPure"
           mb="20px"
           isInvalid={
             input.value.length > 0 ? !input.pattern.test(input.value) : false

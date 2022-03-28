@@ -24,7 +24,7 @@ export default function Tools() {
           position="relative"
         >
           <HomeButton />
-          <Title fontWeight="700" color="black">
+          <Title fontWeight="700" color="neutral.lowPure">
             Adicione uma ferramenta
           </Title>
           <NewToolForm />
