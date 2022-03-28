@@ -1,6 +1,6 @@
 import axios from "axios";
 import Tool from "../interfaces/Tool";
-import fieldType from "../types/fieldType";
+import fieldType from "../types/toolFieldType";
 
 const createTool = ({ title, link, description, tags }: Tool) =>
   axios.post("http://localhost:3000/tools", { title, link, description, tags });

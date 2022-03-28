@@ -5,10 +5,10 @@ import ToolListItem from "../../src/components/ToolListItem";
 import Tool from "../../src/interfaces/Tool";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
-import SearchBar from "../../src/components/searchBar/Input";
+import SearchBar from "../../src/components/searchBar";
 import { useState } from "react";
 import { searchTools } from "../../src/services/toolsRoute";
-import fieldType from "../../src/types/fieldType";
+import fieldType from "../../src/types/toolFieldType";
 
 // export async function getStaticProps() {
 //      Em modo DEV, sempre roda! A cada acesso
