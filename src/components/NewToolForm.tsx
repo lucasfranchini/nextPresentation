@@ -83,7 +83,7 @@ export default function NewToolForm() {
 
   return (
     <>
-      {inputs.map((input) => (
+      {inputs?.map((input) => (
         <Input
           value={input.value}
           onChange={input.onChange}

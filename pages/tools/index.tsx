@@ -40,7 +40,7 @@ export default function Tools({ tools }: { tools: Tool[] }) {
         <Title>
           <FontAwesomeIcon icon={faScrewdriverWrench} /> Tools List
         </Title>
-        {tools.map((tool) => (
+        {tools?.map((tool) => (
           <ToolListItem key={tool.id} tool={tool} />
         ))}
       </Flex>
