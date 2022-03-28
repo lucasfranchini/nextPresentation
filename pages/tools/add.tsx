@@ -3,6 +3,7 @@ import Background from "../../src/components/Background";
 import Title from "../../src/components/Title";
 import Head from "next/head";
 import NewToolForm from "../../src/components/NewToolForm";
+import HomeButton from "../../src/components/HomeButton";
 
 export default function Tools() {
   return (
@@ -20,7 +21,9 @@ export default function Tools() {
           alignItems="center"
           p="0px 70px"
           direction="column"
+          position="relative"
         >
+          <HomeButton />
           <Title fontWeight="700" color="black">
             Adicione uma ferramenta
           </Title>
