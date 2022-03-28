@@ -1,8 +1,12 @@
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
-import { useState } from "react";
 
-export default function SearchBarOptions() {
-  const [value, setValue] = useState("all");
+export default function SearchBarOptions({
+  value,
+  setValue,
+}: {
+  value: string;
+  setValue: any;
+}) {
   return (
     <RadioGroup onChange={setValue} value={value}>
       <Stack direction="row">

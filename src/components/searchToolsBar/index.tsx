@@ -28,10 +28,10 @@ export default function SearchBar({ setTools }: { setTools: any }) {
 
   return (
     <Box>
-      <SearchBarInput onSearch={onSearch} />
+      <SearchBarInput onSearch={searchBarSubmit} />
       <SearchBarOptions
-        searchToolsOptions={searchToolsOptions}
-        setSearchToolsOptions={setSearchToolsOptions}
+        value={searchToolsOptions}
+        setValue={setSearchToolsOptions}
       />
     </Box>
   );
