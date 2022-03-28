@@ -87,10 +87,10 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
           <Text
             fontSize="3xl"
             color="black"
-            fontFamily="Montserrat"
+            fontFamily="family"
             mb="50px"
             textAlign="center"
-            fontWeight="400"
+            fontWeight="regular"
           >
             {toolData.description}
           </Text>
@@ -109,7 +109,7 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
           </Flex>
           <Link
             w="70%"
-            bg="#5232C9"
+            bg="product.pjPure"
             color="white"
             fontSize="xl"
             fontWeight="700"
