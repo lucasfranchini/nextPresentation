@@ -1,14 +1,12 @@
-import { Flex, useToast } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Head from "next/head";
 import Title from "../../src/components/Title";
 import ToolListItem from "../../src/components/ToolListItem";
 import Tool from "../../src/interfaces/Tool";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
-import SearchBar from "../../src/components/searchBar";
+import SearchBar from "../../src/components/searchToolsBar";
 import { useState } from "react";
-import { searchTools } from "../../src/services/toolsRoute";
-import fieldType from "../../src/types/toolFieldType";
 
 // export async function getStaticProps() {
 //      Em modo DEV, sempre roda! A cada acesso
@@ -23,23 +21,6 @@ export async function getServerSideProps() {
 
 export default function Tools({ initialTools }: { initialTools: Tool[] }) {
   const [tools, setTools] = useState<Tool[]>(initialTools);
-  const toast = useToast();
-
-  function searchBarSubmit(searchtText: string, field: fieldType) {
-    searchTools(searchtText, field)
-      .then((res: any) => {
-        setTools(res.data);
-      })
-      .catch(() => {
-        toast({
-          description:
-            "não foi possivel encontrar a ferramenta favor, atualize a pagina",
-          status: "error",
-          duration: 1000,
-          isClosable: false,
-        });
-      });
-  }
 
   return (
     <>
@@ -60,7 +41,7 @@ export default function Tools({ initialTools }: { initialTools: Tool[] }) {
         <Title>
           <FontAwesomeIcon icon={faScrewdriverWrench} /> Tools List
         </Title>
-        <SearchBar onSearch={searchBarSubmit} />
+        <SearchBar setTools={setTools} />
         {tools.map((tool) => (
           <ToolListItem key={tool.id} tool={tool} />
         ))}
