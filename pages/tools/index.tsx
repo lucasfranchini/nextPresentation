@@ -16,12 +16,12 @@ export async function getServerSideProps() {
   //     Em modo DEV, sempre roda! A cada acesso
   //     Rodando a cada acesso que você recebe
   const res = await fetch("http://localhost:3000/tools");
-  const initialTools = await res.json();
-  return { props: { initialTools } };
+  const allTools = await res.json();
+  return { props: { allTools } };
 }
 
-export default function Tools({ initialTools }: { initialTools: Tool[] }) {
-  const [tools, setTools] = useState<Tool[]>(initialTools);
+export default function Tools({ allTools }: { allTools: Tool[] }) {
+  const [tools, setTools] = useState<Tool[]>(allTools);
 
   return (
     <>
