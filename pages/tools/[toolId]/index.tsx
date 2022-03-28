@@ -42,6 +42,7 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
   const toast = useToast();
 
   const handleDeletion = () => {
+    const router = useRouter();
     deleteTool(toolId)
       .then(() => {
         toast({
@@ -51,10 +52,7 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
           isClosable: false,
         });
 
-        setTimeout(
-          () => window.location.replace("http://localhost:3001/tools"),
-          1000
-        );
+        setTimeout(() => router.push("http://localhost:3001/tools"), 1000);
       })
       .catch(() =>
         toast({
