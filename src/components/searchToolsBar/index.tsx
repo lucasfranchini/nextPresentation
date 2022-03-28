@@ -1,13 +1,13 @@
 import { Box, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { searchTools } from "../../services/toolsRoute";
-import fieldType from "../../types/toolFieldType";
+import ToolFieldType from "../../types/toolFieldType";
 import SearchBarInput from "./Input";
 import SearchBarOptions from "./Options";
 
 export default function SearchBar({ setTools }: { setTools: any }) {
   const [searchToolsOptions, setSearchToolsOptions] =
-    useState<fieldType>("all");
+    useState<ToolFieldType>("all");
   const toast = useToast();
 
   function searchBarSubmit(searchtText: string) {

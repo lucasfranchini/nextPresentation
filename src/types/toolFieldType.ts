@@ -1,3 +1,3 @@
-type toolFieldType = "title" | "tags" | "all";
+type ToolFieldType = "title" | "tags" | "all";
 
-export default toolFieldType;
+export default ToolFieldType;

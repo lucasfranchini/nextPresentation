@@ -1,10 +1,10 @@
 import { Flex, FormControl, IconButton, Input } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import fieldType from "../../types/toolFieldType";
+import ToolFieldType from "../../types/toolFieldType";
 import { useState } from "react";
 
-type onSearchType = (searchText: string, field: fieldType) => void;
+type onSearchType = (searchText: string, field: ToolFieldType) => void;
 
 export default function SearchBarInput({
   onSearch,
