@@ -11,8 +11,8 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AxiosResponse } from "axios";
 import HomeButton from "../../../src/components/HomeButton";
 
-export async function getServerSideProps(context: any) {
-  const { toolId } = context.query;
+export async function getServerSideProps(router: any) {
+  const { toolId } = router.query;
   let toolData = {
     title: "",
     link: "",
