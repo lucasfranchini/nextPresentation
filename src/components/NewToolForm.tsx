@@ -3,6 +3,7 @@ import { Button, Input, useToast } from "@chakra-ui/react";
 import NewToolTagManager from "./NewToolTagManager";
 import Tool from "../interfaces/Tool";
 import { createTool } from "../services/toolsRoute";
+import validateURL from "../services/validateURL";
 
 export default function NewToolForm() {
   const [newTool, setNewTool] = useState<Tool>({
@@ -20,22 +21,21 @@ export default function NewToolForm() {
       value: newTool.title,
       onChange: (e: React.FormEvent<HTMLInputElement>) =>
         setNewTool({ ...newTool, title: e.currentTarget.value }),
-      pattern: /[a-zA-Z]{3,}/,
+      isValid: (string: string) => /[a-zA-Z]{3,}/.test(string),
     },
     {
       placeholder: "Link",
       value: newTool.link,
       onChange: (e: React.FormEvent<HTMLInputElement>) =>
         setNewTool({ ...newTool, link: e.currentTarget.value }),
-      pattern:
-        /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
+      isValid: (string: string) => validateURL(string),
     },
     {
       placeholder: "Descrição",
       value: newTool.description,
       onChange: (e: React.FormEvent<HTMLInputElement>) =>
         setNewTool({ ...newTool, description: e.currentTarget.value }),
-      pattern: /[a-zA-Z]{3,}/,
+      isValid: (string: string) => /[a-zA-Z]{3,}/.test(string),
     },
   ];
 
@@ -43,11 +43,7 @@ export default function NewToolForm() {
     let allowed = true;
 
     inputs.forEach((input) => {
-      if (
-        !input.value ||
-        !newTool.tags.length ||
-        !input.pattern.test(input.value)
-      )
+      if (!input.value || !newTool.tags.length || !input.isValid(input.value))
         allowed = false;
     });
 
@@ -93,7 +89,7 @@ export default function NewToolForm() {
           focusBorderColor="product.pjPure"
           mb="20px"
           isInvalid={
-            input.value.length > 0 ? !input.pattern.test(input.value) : false
+            input.value.length > 0 ? !input.isValid(input.value) : false
           }
           _placeholder={{ color: "#ABABAB" }}
           key={input.placeholder}
