@@ -8,6 +8,7 @@ import { faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../src/components/searchToolsBar";
 import { useState } from "react";
 import HomeButton from "../../src/components/HomeButton";
+import AddTool from "../../src/components/AddTool";
 
 // export async function getStaticProps() {
 //      Em modo DEV, sempre roda! A cada acesso
@@ -41,6 +42,7 @@ export default function Tools({ allTools }: { allTools: Tool[] }) {
         position="relative"
       >
         <HomeButton />
+        <AddTool />
         <Title>
           <FontAwesomeIcon icon={faScrewdriverWrench} /> Tools List
         </Title>
