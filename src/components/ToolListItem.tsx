@@ -4,7 +4,7 @@ import Tool from "../interfaces/Tool";
 
 export default function ToolListItem({ tool }: { tool: Tool }) {
   return (
-    <Link href={`/tools/${tool.id}`}>
+    <Link href={`/tools/${tool.id}`} passHref>
       <Flex
         bgColor="white"
         borderRadius="5px"

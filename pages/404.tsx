@@ -16,7 +16,7 @@ export default function Custom404() {
       flexDirection="column"
       padding="20px"
     >
-      <Image src="/images/404.jpeg" />
+      <Image src="/images/404.jpeg" alt="not found" />
       <StyledLink href="/">Return To Home</StyledLink>
     </Flex>
   );
