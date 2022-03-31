@@ -1,6 +1,6 @@
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "../src/theme/theme";
+import theme from "../src/theme/theme";
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
   console.log(metric);
