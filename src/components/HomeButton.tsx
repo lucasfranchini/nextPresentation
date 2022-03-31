@@ -5,7 +5,7 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 export default function HomeButton() {
   return (
-    <StyledLink href="/">
+    <StyledLink href="/" passHref>
       <Link
         width="46px"
         h="40px"

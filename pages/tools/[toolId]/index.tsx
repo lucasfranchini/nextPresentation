@@ -40,9 +40,9 @@ export async function getServerSideProps(router: any) {
 export default function ToolById({ toolData }: { toolData: Tool }) {
   const toolId = toolData.id;
   const toast = useToast();
+  const router = useRouter();
 
   const handleDeletion = () => {
-    const router = useRouter();
     deleteTool(toolId)
       .then(() => {
         toast({

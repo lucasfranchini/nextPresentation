@@ -12,7 +12,12 @@ export default function Home() {
       </Head>
       <Background>
         <Title>Isso é uma pagina estática</Title>
-        <Image src="/images/pusheencode.gif" width="400px" height="300px" />
+        <Image
+          src="/images/pusheencode.gif"
+          width="400px"
+          height="300px"
+          alt="condingCat"
+        />
         <StyledLink href="/tools">Listar as ferramentas</StyledLink>
       </Background>
     </>
