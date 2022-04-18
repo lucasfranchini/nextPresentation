@@ -1,17 +1,20 @@
-import { Flex, FormControl, IconButton, Input } from "@chakra-ui/react";
+import {
+  Flex,
+  FormControl,
+  IconButton,
+  Input,
+  InputProps,
+} from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import ToolFieldType from "../../types/toolFieldType";
 import { useState } from "react";
 import { runOnEnter } from "../../services/addOnEnter";
 
-type onSearchType = (searchText: string) => void;
+interface Iprops extends InputProps {
+  onSearch: (searchText: string) => void;
+}
 
-export default function SearchBarInput({
-  onSearch,
-}: {
-  onSearch: onSearchType;
-}) {
+export default function SearchBarInput({ onSearch, ...props }: Iprops) {
   const [searchText, setSearchText] = useState("");
   return (
     <FormControl>
@@ -25,6 +28,7 @@ export default function SearchBarInput({
           onKeyUp={(e) => {
             runOnEnter(e.nativeEvent.code, () => onSearch(searchText));
           }}
+          {...props}
         />
         <IconButton
           type="submit"
