@@ -20,7 +20,6 @@ const Template: ComponentStory<typeof SearchBar> = (args) => {
 export const Primary = Template.bind({});
 
 Primary.args = {
-  //@ts-ignore
   fontWeight: "400",
   border: "1px",
 };
