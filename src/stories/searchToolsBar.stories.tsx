@@ -22,4 +22,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   fontWeight: "400",
   border: "1px",
+  color: "black",
 };
