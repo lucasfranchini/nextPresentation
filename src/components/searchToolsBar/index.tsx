@@ -34,7 +34,11 @@ export default function SearchBar({
 
   return (
     <Box w="50%" mb="20px" {...props}>
-      <SearchBarInput onSearch={searchBarSubmit} border="1px" />
+      <SearchBarInput
+        onSearch={searchBarSubmit}
+        border="1px"
+        borderColor="blue"
+      />
       <SearchBarOptions
         value={searchToolsOptions}
         setValue={setSearchToolsOptions}
