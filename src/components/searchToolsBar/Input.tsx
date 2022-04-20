@@ -29,6 +29,7 @@ export default function SearchBarInput({ onSearch, ...props }: Iprops) {
             runOnEnter(e.nativeEvent.code, () => onSearch(searchText));
           }}
           {...props}
+          borderColor="blue"
         />
         <IconButton
           type="submit"
