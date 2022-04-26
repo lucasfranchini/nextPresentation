@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "3001:3000"
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - .:/usr/src/next-example
+      - ./node_modules:/usr/src/next-example/node_modules
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+volumes:
+  node_modules:
