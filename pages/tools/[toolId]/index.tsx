@@ -52,7 +52,7 @@ export default function ToolById({ toolData }: { toolData: Tool }) {
           isClosable: false,
         });
 
-        setTimeout(() => router.push("http://localhost:3001/tools"), 1000);
+        setTimeout(() => router.push("/tools"), 1000);
       })
       .catch(() =>
         toast({

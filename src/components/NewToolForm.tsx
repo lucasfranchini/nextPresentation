@@ -67,14 +67,15 @@ export default function NewToolForm() {
           isClosable: false,
         });
       })
-      .catch((error) =>
+      .catch((error) => {
+        console.log(error);
         toast({
-          description: error,
+          description: "Ocorreu um erro, a ferramenta não foi criada",
           status: "error",
           duration: 1000,
           isClosable: false,
-        })
-      );
+        });
+      });
   };
 
   return (

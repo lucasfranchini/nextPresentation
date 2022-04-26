@@ -15,8 +15,8 @@ import AddTool from "../../src/components/AddTool";
 //      Roda SOMENTE em build time
 export async function getServerSideProps() {
   //     Em modo DEV, sempre roda! A cada acesso
-  //     Rodando a cada acesso que você recebe
-  const res = await fetch("http://localhost:3000/tools");
+  //     Rodando a cada acesso que você receber
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`);
   const allTools = await res.json();
   return { props: { allTools } };
 }
